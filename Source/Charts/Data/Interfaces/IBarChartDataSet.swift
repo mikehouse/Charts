@@ -33,6 +33,12 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
 
     /// the color drawing borders around the bars.
     var barBorderColor: NSUIColor { get set }
+    
+    /// the radius for round corners.
+    var barCornerRadius: CGFloat { get set }
+    
+    /// the corners to round for each bar. Applicable for positive values. For negative value bars corners will be reversed (topLeft -> bottomRight)
+    var barRoundCorners: UIRectCorner { get set }
 
     /// the alpha value (transparency) that is used for drawing the highlight indicator bar. min = 0.0 (fully transparent), max = 1.0 (fully opaque)
     var highlightAlpha: CGFloat { get set }
