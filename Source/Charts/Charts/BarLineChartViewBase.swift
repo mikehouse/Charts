@@ -600,13 +600,11 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             if _data !== nil &&
                 (_pinchZoomEnabled || _scaleXEnabled || _scaleYEnabled)
             {
-                _isScaling = true
-                
                 if _pinchZoomEnabled
                 {
                     _gestureScaleAxis = .both
                 }
-                else
+                else if recognizer.numberOfTouches > 1
                 {
                     let x = abs(recognizer.location(in: self).x - recognizer.nsuiLocationOfTouch(1, inView: self).x)
                     let y = abs(recognizer.location(in: self).y - recognizer.nsuiLocationOfTouch(1, inView: self).y)
@@ -620,7 +618,13 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
                         _gestureScaleAxis = x > y ? .x : .y
                     }
                 }
+                else
+                {
+                    return
+                }
             }
+            
+            _isScaling = true
         }
         else if recognizer.state == NSUIGestureRecognizerState.ended ||
             recognizer.state == NSUIGestureRecognizerState.cancelled
