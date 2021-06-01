@@ -486,6 +486,17 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 break
             }
             
+            if let color = dataSet.barBackgroundColor
+            {
+                context.saveGState()
+                var rect = barRect
+                rect.origin.y = viewPortHandler.contentTop
+                rect.size.height = viewPortHandler.contentBottom - viewPortHandler.contentTop
+                context.setFillColor(color.cgColor)
+                context.fill(rect)
+                context.restoreGState()
+            }
+            
             if !isSingleColor
             {
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.

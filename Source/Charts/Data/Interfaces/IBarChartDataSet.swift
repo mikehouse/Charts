@@ -28,6 +28,9 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     /// the color used for drawing the bar-shadows. The bar shadows is a surface behind the bar that indicates the maximum value
     var barShadowColor: NSUIColor { get set }
     
+    /// the color drawing bar background
+    var barBackgroundColor: NSUIColor? { get set }
+    
     /// the width used for drawing borders around the bars. If borderWidth == 0, no border will be drawn.
     var barBorderWidth : CGFloat { get set }
 
